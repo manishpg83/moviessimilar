@@ -1,0 +1,148 @@
+[
+  {
+    "slug": "homepage",
+    "name": "Homepage",
+    "description": null,
+    "config": {
+      "seoTitle": "{{site_name}} - Movies, TV and Celebrities",
+      "seoDescription": "The Movie Database ({{site_name}}) is a popular database for movies, TV shows and celebrities.",
+      "contentType": "manual",
+      "contentOrder": "channelables.order:asc",
+      "carouselWhenNested": true,
+      "contentModel": "channel",
+      "autoUpdateProvider": "local",
+      "layout": "list",
+      "nestedLayout": "list",
+      "connectToGenreViaUrl": false,
+      "hideTitle": true,
+      "lockSlug": true
+    },
+    "nestedChannels": [
+      "trending-movies",
+      "now-playing",
+      "trending-tv",
+      "releasing-soon",
+      "latest-news",
+      "airing-today",
+      "top-rated-movies",
+      "people"
+    ]
+  },
+  {
+    "slug": "now-playing",
+    "name": "Now playing",
+    "description": "Movies that are currently playing in theaters.",
+    "config": {
+      "contentType": "autoUpdate",
+      "contentOrder": "popularity:desc",
+      "carouselWhenNested": true,
+      "contentModel": "movie",
+      "autoUpdateProvider": "tmdb",
+      "layout": "grid",
+      "nestedLayout": "carousel",
+      "autoUpdateMethod": "nowPlaying",
+      "connectToGenreViaUrl": false
+    }
+  },
+  {
+    "slug": "trending-tv",
+    "name": "Trending TV shows",
+    "description": "Currently trending TV shows.",
+    "config": {
+      "contentType": "autoUpdate",
+      "contentOrder": "popularity:desc",
+      "carouselWhenNested": true,
+      "contentModel": "series",
+      "autoUpdateProvider": "tmdb",
+      "layout": "grid",
+      "nestedLayout": "carousel",
+      "autoUpdateMethod": "mostPopular",
+      "connectToGenreViaUrl": false,
+      "tmdb_language": "en"
+    }
+  },
+  {
+    "slug": "releasing-soon",
+    "name": "Releasing soon",
+    "description": "Movies that will soon be playing in theaters",
+    "config": {
+      "contentType": "autoUpdate",
+      "contentOrder": "popularity:desc",
+      "carouselWhenNested": true,
+      "contentModel": "movie",
+      "autoUpdateProvider": "tmdb",
+      "layout": "grid",
+      "nestedLayout": "landscapeCarousel",
+      "autoUpdateMethod": "upcoming",
+      "connectToGenreViaUrl": false
+    }
+  },
+  {
+    "slug": "trending-movies",
+    "name": "Trending movies",
+    "description": null,
+    "config": {
+      "contentType": "autoUpdate",
+      "contentOrder": "popularity:desc",
+      "carouselWhenNested": true,
+      "contentModel": "movie",
+      "autoUpdateProvider": "tmdb",
+      "layout": "grid",
+      "nestedLayout": "slider",
+      "autoUpdateMethod": "mostPopular",
+      "connectToGenreViaUrl": false,
+      "hideTitle": true
+    }
+  },
+  {
+    "slug": "airing-today",
+    "name": "Airing today",
+    "description": null,
+    "config": {
+      "contentType": "autoUpdate",
+      "contentOrder": "popularity:desc",
+      "carouselWhenNested": true,
+      "contentModel": "series",
+      "autoUpdateProvider": "tmdb",
+      "layout": "grid",
+      "nestedLayout": "carousel",
+      "autoUpdateMethod": "airingToday",
+      "connectToGenreViaUrl": false
+    }
+  },
+  {
+    "slug": "top-rated-movies",
+    "name": "Top rated movies",
+    "description": null,
+    "config": {
+      "contentType": "autoUpdate",
+      "contentOrder": "popularity:desc",
+      "carouselWhenNested": true,
+      "contentModel": "movie",
+      "autoUpdateProvider": "tmdb",
+      "layout": "grid",
+      "nestedLayout": "carousel",
+      "autoUpdateMethod": "topRated",
+      "connectToGenreViaUrl": false
+    }
+  },
+  {
+    "slug": "latest-news",
+    "name": "Latest news",
+    "description": null,
+    "config": {
+      "seoTitle": "Latest news - {{site_name}}",
+      "seoDescription": "The Movie Database ({{site_name}}) is a popular database for movies, TV shows and celebrities.",
+      "contentType": "listAll",
+      "contentOrder": "created_at:desc",
+      "carouselWhenNested": true,
+      "contentModel": "newsArticle",
+      "autoUpdateProvider": "local",
+      "layout": "list",
+      "nestedLayout": "landscapeCarousel",
+      "connectToGenreViaUrl": false,
+      "autoUpdateMethod": null,
+      "preventDeletion": true
+    }
+  }
+]

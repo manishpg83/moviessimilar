@@ -1,0 +1,90 @@
+[
+  {
+    "slug": "people",
+    "name": "Trending Actors",
+    "description": null,
+    "config": {
+      "seoTitle": "Popular People - {{site_name}}",
+      "seoDescription": "The Movie Database ({{site_name}}) is a popular database for movies, TV shows and celebrities.",
+      "contentType": "listAll",
+      "contentOrder": "popularity:desc",
+      "nestedLayout": "carousel",
+      "contentModel": "person",
+      "layout": "list",
+      "preventDeletion": true
+    }
+  },
+  {
+    "slug": "movies",
+    "name": "Browse Movies",
+    "config": {
+      "seoTitle": "Browse - {{site_name}}",
+      "seoDescription": "Browse movies and series based on {{site_name}}",
+      "contentType": "listAll",
+      "contentOrder": "popularity:desc",
+      "nestedLayout": "carousel",
+      "contentModel": "movie",
+      "layout": "grid",
+      "preventDeletion": true
+    }
+  },
+  {
+    "slug": "series",
+    "name": "Browse series",
+    "description": null,
+    "config": {
+      "contentType": "listAll",
+      "contentOrder": "popularity:desc",
+      "nestedLayout": "carousel",
+      "contentModel": "series",
+      "layout": "grid",
+      "preventDeletion": true
+    }
+  },
+  {
+    "slug": "genre",
+    "name": "{{channel.restriction.display_name}} movies and series",
+    "description": null,
+    "config": {
+      "contentType": "listAll",
+      "contentOrder": "popularity:desc",
+      "nestedLayout": "carousel",
+      "contentModel": "title",
+      "layout": "grid",
+      "connectToGenreViaUrl": true,
+      "restriction": "genre",
+      "restrictionModelId": "urlParam",
+      "preventDeletion": true
+    }
+  },
+  {
+    "slug": "keyword",
+    "name": "Titles with “{{channel.restriction.display_name}}“ keyword",
+    "description": null,
+    "config": {
+      "contentType": "listAll",
+      "contentOrder": "popularity:desc",
+      "nestedLayout": "carousel",
+      "contentModel": "title",
+      "layout": "grid",
+      "restriction": "keyword",
+      "restrictionModelId": "urlParam",
+      "preventDeletion": true
+    }
+  },
+  {
+    "slug": "production-countries",
+    "name": "Titles produced in {{channel.restriction.display_name}}",
+    "description": null,
+    "config": {
+      "contentType": "listAll",
+      "contentOrder": "popularity:desc",
+      "nestedLayout": "carousel",
+      "contentModel": "title",
+      "layout": "grid",
+      "restriction": "production_country",
+      "restrictionModelId": "urlParam",
+      "preventDeletion": true
+    }
+  }
+]
