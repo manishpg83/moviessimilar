@@ -12,7 +12,7 @@ import {useFormContext} from 'react-hook-form';
 import {UpdateChannelPayload} from '@common/admin/channels/requests/use-update-channel';
 import {MOVIE_MODEL, SERIES_MODEL, TITLE_MODEL} from '@app/titles/models/title';
 import {InfoDialogTrigger} from '@common/ui/overlays/dialog/info-dialog-trigger/info-dialog-trigger';
-
+import Select from 'react-select';
 const supportedModels = [TITLE_MODEL, MOVIE_MODEL, SERIES_MODEL];
 
 const restrictions = {
@@ -20,25 +20,35 @@ const restrictions = {
   [KEYWORD_MODEL]: message('Keyword'),
   [PRODUCTION_COUNTRY_MODEL]: message('Production country'),
 };
-
+const colourOptions =  [
+  { value: 'Dynamic (from url)', label: 'Dynamic (from url)' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
+let selected : any; 
+ let slectedEdit : any;
+ 
 export function ChannelRestrictionField() {
   const {setValue} = useFormContext<UpdateChannelPayload>();
   const {watch} = useFormContext<UpdateChannelPayload>();
-
+console.log('watch', watch)
   if (!supportedModels.includes(watch('config.contentModel'))) {
     return null;
   }
-
+  slectedEdit = selected ? JSON.parse(selected) : [] ;
+  // slectedEdit = JSON.parse(selected)
+ console.log('selected', selected)
   return (
     <div className="my-24 items-end gap-14 md:flex">
       <FormSelect
         className="w-full flex-auto"
         name="config.restriction"
-        selectionMode="multiple" // changed to multiple
+        selectionMode="single"
         label={<Trans message="Filter titles by" />}
         labelSuffix={<InfoTrigger />}
         onSelectionChange={() => {
-          setValue('config.restrictionModelId', 'urlParam');
+          console.log('selectedOn type 01',typeof selected)
+          setValue('config.restrictionModelId', selected);
         }}
       >
         <Item value={null}>
@@ -81,39 +91,63 @@ function RestrictionModelField() {
     [PRODUCTION_COUNTRY_MODEL]: data?.productionCountries,
   };
   const restrictionLabel = restrictions[selectedRestriction];
-
+console.log('restrictions', restrictions)
   // allow setting keyword to custom value, because there are too many keywords
   // to put into autocomplete, ideally it would use async search from backend though
 
+  const handleChange = (data) => { 
+    setSearchValue(data)
+const selectedOn = JSON.stringify(data);
+ 
+    selected = selectedOn;
+
+      } 
   return (
-    <FormSelect
-      className="w-full flex-auto"
-      name="config.restrictionModelId"
-      selectionMode="single"
-      showSearchField
-      searchPlaceholder={trans(message('Search...'))}
-      isAsync={selectedRestriction === KEYWORD_MODEL}
-      isLoading={
-        selectedRestriction === KEYWORD_MODEL && keywordQuery.isLoading
-      }
-      inputValue={searchValue}
-      onInputValueChange={setSearchValue}
-      label={
-        <Trans
+    // <FormSelect
+    //   className="w-full flex-auto"
+    //   name="config.restrictionModelId"
+    //   selectionMode="multiple"
+    //   showSearchField
+    //   searchPlaceholder={trans(message('Search...'))}
+    //   isAsync={selectedRestriction === KEYWORD_MODEL}
+    //   isLoading={
+    //     selectedRestriction === KEYWORD_MODEL && keywordQuery.isLoading
+    //   }
+    //   inputValue={searchValue}
+    //   onInputValueChange={setSearchValue}
+    //   label={
+    //     <Trans
+    //       message=":restriction name"
+    //       values={{restriction: trans(restrictionLabel)}}
+    //     />
+    //   }
+    // >
+    //   <Item value="urlParam">
+    //     <Trans message="Dynamic (from url)" />
+    //   </Item>
+    //   {options[selectedRestriction]?.map(option => (
+    //     <Item key={option.value} value={option.value}>
+    //       <Trans message={option.name} />
+    //     </Item>
+    //   ))}
+    // </FormSelect>
+    <div className='w-full flex-auto'>
+    <label className='block first-letter:capitalize text-left whitespace-nowrap text-sm mb-4'>
+    <Trans
           message=":restriction name"
           values={{restriction: trans(restrictionLabel)}}
         />
-      }
-    >
-      <Item value="urlParam">
-        <Trans message="Dynamic (from url)" />
-      </Item>
-      {options[selectedRestriction]?.map(option => (
-        <Item key={option.value} value={option.value}>
-          <Trans message={option.name} />
-        </Item>
-      ))}
-    </FormSelect>
+    </label>
+    <Select
+    defaultValue={searchValue || slectedEdit}
+    isMulti
+    name="colors"
+    onChange={(data)=>handleChange(data)}
+    options={colourOptions}
+    className="basic-multi-select"
+    classNamePrefix="select"
+  />
+    </div>
   );
 }
 
