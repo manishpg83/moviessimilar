@@ -27,7 +27,7 @@ export function ContentAutoUpdateField({children, config}: Props) {
       <FormSelect
         required
         className="flex-auto"
-        selectionMode="single"
+        selectionMode="multiple"
         name="config.autoUpdateMethod"
         onSelectionChange={value => {
           if (config.autoUpdateMethods[value].localOnly) {

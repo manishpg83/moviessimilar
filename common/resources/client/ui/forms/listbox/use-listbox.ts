@@ -1,8 +1,8 @@
 import React, { Ref, useCallback, useId, useMemo, useRef, useState } from 'react';
 import { useControlledState } from '@react-stately/utils';
 // ... other imports
-
-export function useListbox<T>(
+// Commented By BriskBrain Team
+/* export function useListbox<T>(
   props: ListboxProps & ListBoxChildren<T>,
   ref?: Ref<HTMLElement>
 ): UseListboxReturn {
@@ -49,9 +49,9 @@ export function useListbox<T>(
     handleItemSelection, // Include the updated handleItemSelection in the return
     // ... other properties ...
   };
-}
-
-function useControlledSelection(props: ListboxProps) {
+} */
+// Commented By BriskBrain Team
+/* function useControlledSelection(props: ListboxProps) {
   // ... existing code ...
 
   // The selectValues function needs to handle both single and multiple selections
@@ -73,7 +73,7 @@ function useControlledSelection(props: ListboxProps) {
     selectedValues,
     selectValues,
   };
-}
+} */
 
 // ... rest of the code ...
 
@@ -92,6 +92,7 @@ import {
   UseListboxReturn,
 } from './types';
 import {VirtualElement} from '@floating-ui/react-dom';
+
 
 export function useListbox<T>(
   props: ListboxProps & ListBoxChildren<T>,

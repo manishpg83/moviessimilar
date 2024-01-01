@@ -32,14 +32,14 @@ export function LandingPage() {
 
   return (
     <Fragment>
-      <DefaultMetaTags />
+      {/* <DefaultMetaTags />
       <HeroHeader content={appearance} />
       <PrimaryFeatures content={appearance} />
       <SecondaryFeatures content={appearance} />
       {showTrending && <LandingPageTrendingTitles />}
       <BottomCta content={appearance} />
       {showPricing && <PricingSection content={appearance} />}
-      <Footer className="landing-container" />
+      <Footer className="landing-container" /> */}
     </Fragment>
   );
 }
